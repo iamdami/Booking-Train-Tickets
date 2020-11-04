@@ -46,12 +46,12 @@ while success == 0:  # If the cancellation ticket reservation is not successful,
     time_find = 0  # The success of finding the departure time
     for i in range(1, 10):  # Search from line 1 to line 10
         depart = driver.find_element_by_xpath('//tbody/tr[{}]/td[2]'.format(i)).text.split('\n')[1]
-        ym = driver.find_element_by_xpath('//tbody/tr[{}]/td[5]//img'.format(i)).get_attribute('alt')  # economy room inquiry
+        ym = driver.find_element_by_xpath('//tbody/tr[{}]/td[6]//img'.format(i)).get_attribute('alt')  # economy room inquiry
         if depart == s_time:  # If the departure time coincides
             if ym == '예약하기':  # If reservation is possible
                 print('기차표가 예매되었습니다')
                 success = 1
-                driver.find_element_by_xpath('//tbody/tr[{}]/td[4]//img'.format(i)).click()  # Click to book
+                driver.find_element_by_xpath('//tbody/tr[{}]/td[5]//img'.format(i)).click()  # Click to book
             else:
                 driver.find_element_by_xpath("//img[@alt='조회하기']").click()  # Click to view
                 print('아직 자리가 없습니다')
